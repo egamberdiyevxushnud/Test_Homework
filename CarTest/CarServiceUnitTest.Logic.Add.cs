@@ -100,10 +100,10 @@ namespace CarTest
                 Name = "Jentra"
             };
 
-            _carRepositoryMock.Setup(x => x.Update(input.Id)
+            _carRepositoryMock.Setup(x => x.GetByAny(input.Id)
                 .ReturnsAsync(resultcar);
 
-            var outputcar = await _icarServece.UpdateAsync(input);
+            var outputcar = await _icarServece.GetById(input);
 
             Assert.Equal(resultcar.Name, input.Name);
             Assert.Equal(resultcar.Salary, input.Salary);
