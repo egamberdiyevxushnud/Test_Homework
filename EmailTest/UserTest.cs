@@ -14,11 +14,34 @@ namespace EmailTest
 {
     public class UserTest
     {
-        private readonly Mock<ILoginServece> _LoginServece = new Mock<ILoginServece>();
+        private readonly ILoginServece _loginServece;
+        private readonly Mock<IloginRepository> _repositoryMock;
 
-        
+        public UserTest()
+        {
+            _repositoryMock = new Mock<IloginRepository>();
+            _loginServece = new LoginServece(_repositoryMock.Object);
+        }
 
+        [Fact]
+        public async Task Add_ShouldReturnCreateUser()
+        {
+            //Arrange 
+            var login = new LoginDTO
+            {
+                Email = "xushnudegamberdiyev0@gmail.com",
+                Password = "777777"
+            };
 
+            var expectedLogin = new Login
+            {
+                Id = 1,
+                Email = "xushnudegamberdiyev0@gmail.com",
+                Password = "7777777",
+                SendCode = "90099"
+            };
 
+            _repositoryMock.Setup(r => r.)
+        }
     }
 }
