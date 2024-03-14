@@ -45,9 +45,9 @@ namespace CarTest
 
             var resultcar = new Car()
             {
-                Id = 1,
-                Salary = 15000,
-                Name = "Jentra"
+                Id = input.Id,
+                Salary = input.Salary,
+                Name = input.Name
             };
 
             _carRepositoryMock.Setup(x => x.Delete(input.Id)
@@ -70,12 +70,12 @@ namespace CarTest
 
             var resultcar = new Car()
             {
-                Id = 1,
-                Salary = 15000,
-                Name = "Jentra"
+                Id = input.Id,
+                Salary = input.Salary,
+                Name = input.Name
             };
 
-            _carRepositoryMock.Setup(x => x.Update(input)
+            _carRepositoryMock.Setup(x => x.Update(input.Id)
                 .ReturnsAsync(resultcar);
 
             var outputcar = await _icarServece.UpdateAsync(input);
@@ -95,9 +95,9 @@ namespace CarTest
 
             var resultcar = new Car()
             {
-                Id = 1,
-                Salary = 15000,
-                Name = "Jentra"
+                Id = input.Id,
+                Salary = input.Salary,
+                Name = input.Name
             };
 
             _carRepositoryMock.Setup(x => x.GetByAny(input.Id)

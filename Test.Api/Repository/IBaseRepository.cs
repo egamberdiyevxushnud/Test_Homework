@@ -5,9 +5,9 @@ namespace Test.Api.Repository
     public interface IBaseRepository<T>
     {
         public Task<T> Create(T entity);
-        public Task<T> GetByAny(Expression<Func<T, bool>> expression);
+        public Task<T> GetById(int id);
         public Task<List<T>> GetAll();
-        public Task<bool> Delete(Expression<Func<T, bool>> expression);
+        public Task<T> Delete(T entity);
         public Task<T> Update(T entity);
 
     }

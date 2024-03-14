@@ -43,7 +43,7 @@ namespace Test.Api.Controllers
         [HttpDelete]
         public async Task<ActionResult<string>> Delete(int id)
         {
-            var result = await _icarServece.GetById(id);
+            var result = await _icarServece.Delete(id);
             if (result != null)
             {
                 return Ok("Delet boldi");

@@ -25,21 +25,16 @@ namespace Test.Api.Repository
             return result.Entity;
         }
 
-        public async Task<bool> Delete(Expression<Func<T, bool>> expression)
+        public async Task<T> Delete(T entity)
         {
-            var result = await _dbSet.FirstOrDefaultAsync(expression);
 
-            if(result == null)
-            {
-                return false;
-            }
+            await _context.SaveChangesAsync();
+            EntityEntry<T> entryEntity = _context.Set<T>().Remove(entity);
 
-            _context.Remove(result);
-            _context.SaveChangesAsync();
+            return entryEntity.Entity;
 
-            return true;
 
-            
+
         }
 
         public async Task<List<T>> GetAll()
@@ -48,20 +43,9 @@ namespace Test.Api.Repository
             return result;
         }
 
-        public async Task<T> GetByAny(Expression<Func<T, bool>> expression)
-        {
-            try
-            {
-                var result = await _dbSet.FirstOrDefaultAsync(expression);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-
-
-        }
+        public async Task<T> GetById(int id) =>
+            _context.Set<T>().Find(id);
+       
 
         public async Task<T> Update(T entity)
         {

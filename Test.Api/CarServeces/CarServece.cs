@@ -26,10 +26,10 @@ namespace Test.Api.CarServeces
             return result;
         }
 
-        public Task<bool> Delete(Expression<Func<Car, bool>> expression)
+        public async Task<Car> Delete(int id)
         {
-            var result = _icarRepository.Delete(expression);
-            return result;
+            var result = _icarRepository.GetById(id);
+            return await _icarRepository.Delete(result.Id);
         }
 
         public Task<List<Car>> GetAllAsync()
@@ -40,13 +40,13 @@ namespace Test.Api.CarServeces
 
         public async Task<Car> GetById(int id)
         {
-            var result = await _icarRepository.GetByAny(x => x.Id == id);
+            var result = await _icarRepository.GetById(id);
             return result;
         }
 
         public async Task<Car> UpdateAsync(int id, CarDTO carDTO)
         {
-            var result = await _icarRepository.GetByAny(x => x.Id == id);
+            var result = await _icarRepository.GetById(id);
             if (result != null)
             {
                 result.Name = carDTO.Name;

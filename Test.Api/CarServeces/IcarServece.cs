@@ -8,7 +8,7 @@ namespace Test.Api.CarServeces
         Task<Car> CreateAsync(Car car);
         Task<Car> GetById(int id);
         Task<List<Car>> GetAllAsync();
-        Task<bool> Delete(Expression<Func<Car, bool>> expression);
+        Task<Car> Delete(int id);
         Task<Car> UpdateAsync(int id, CarDTO carDTO);
     }
 }
